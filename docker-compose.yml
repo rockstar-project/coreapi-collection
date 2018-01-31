@@ -1,0 +1,35 @@
+version: '2'
+
+services:
+  collectionapi:
+    build: .
+    image: $DOCKER_NAMESPACE/coreapi-collection
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - AUTH0_ISSUER=https://rockstar.auth0.com/
+      - AUTH0_AUDIENCE=http://api.rock-star.io/v1
+      - "SPRING_DATA_MONGODB_URI=mongodb://collectionmongo:27017/rockstar_db_collection"
+    links:
+      - discovery
+      - collectionmysql
+  collectionmysql:
+    image: $DOCKER_NAMESPACE/datastore-collection
+    volumes:
+      - /data
+    environment:
+      - MYSQL_DATABASE=rockstar_db_collection
+      - MYSQL_USER=rockstar
+      - MYSQL_PASSWORD=rockstar123
+      - MYSQL_ROOT_PASSWORD=rockstar123
+  gateway:
+    image: $DOCKER_NAMESPACE/api-gateway
+    ports:
+      - 80:8765
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    links:
+      - discovery
+  discovery:
+    image: $DOCKER_NAMESPACE/discovery-service
+    ports:
+      - 8761:8761
