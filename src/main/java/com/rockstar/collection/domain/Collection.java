@@ -32,6 +32,9 @@ public class Collection {
 	
 	@Column(name="IMAGE")
     private String image;
+	
+	@Column(name="VISIBILITY")
+	private String visibility;
     
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name="COLLECTION_ID")
@@ -78,6 +81,14 @@ public class Collection {
 
 	public void setImage(String image) {
 		this.image = image;
+	}
+
+	public String getVisibility() {
+		return visibility;
+	}
+
+	public void setVisibility(String visibility) {
+		this.visibility = visibility;
 	}
 
 	public Set<Item> getItems() {

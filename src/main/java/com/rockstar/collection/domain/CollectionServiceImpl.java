@@ -58,6 +58,10 @@ public class CollectionServiceImpl implements CollectionService {
 			currentCollection.setImage(collection.getImage());
 			modifyFlag = true;
 		}
+		if (StringUtils.hasText(collection.getVisibility())) {
+			currentCollection.setVisibility(collection.getVisibility());
+			modifyFlag = true;
+		}
 		if (modifyFlag) {
 			this.collectionRepository.save(currentCollection);
 		}

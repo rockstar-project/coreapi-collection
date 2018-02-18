@@ -24,6 +24,9 @@ public class CollectionResource extends ResourceSupport {
     @Size(max=100)
     private String description;
     private String image;
+    
+    private String visibility;
+    
     private List<ItemResource> items;
     
     public CollectionResource() {
@@ -59,6 +62,14 @@ public class CollectionResource extends ResourceSupport {
 
 	public void setImage(String image) {
 		this.image = image;
+	}
+	
+	public String getVisibility() {
+		return visibility;
+	}
+
+	public void setVisibility(String visibility) {
+		this.visibility = visibility;
 	}
 
 	public List<ItemResource> getItems() {

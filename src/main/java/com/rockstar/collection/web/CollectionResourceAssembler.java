@@ -21,6 +21,7 @@ public class CollectionResourceAssembler extends ResourceAssemblerSupport<Collec
 			collectionResource.setTitle(collection.getTitle());
 			collectionResource.setDescription(collection.getDescription());
 			collectionResource.setImage(collection.getImage());
+			collectionResource.setVisibility(collection.getVisibility());
 		}
 		return collectionResource;
 	}
@@ -34,6 +35,7 @@ public class CollectionResourceAssembler extends ResourceAssemblerSupport<Collec
 			collection.setTitle(collectionResource.getTitle());
 			collection.setDescription(collectionResource.getDescription());
 			collection.setImage(collectionResource.getImage());
+			collection.setVisibility(collectionResource.getVisibility());
 		}
 		return collection;
 	}
