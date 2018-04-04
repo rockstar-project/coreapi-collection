@@ -17,4 +17,4 @@ eureka:
 logging:
   level:
     org.springframework.security: DEBUG
-    com.auth0.spring.security: DEBUG
+    io.prometheus.client: INFO

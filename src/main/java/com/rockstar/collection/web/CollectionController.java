@@ -42,8 +42,8 @@ public class CollectionController {
     @Autowired
     private ItemResourceAssembler itemResourceAssembler;
 
-    @GetMapping(value="/search", params="slug")
-    public HttpEntity<List<CollectionResource>> search(@RequestParam("slug") String slug) {
+    @GetMapping
+    public HttpEntity<List<CollectionResource>> getCollections(@RequestParam("slug") String slug) {
         List<Collection> collectionList = null;
 		List<CollectionResource> collectionResourceList = null;
 		
@@ -51,7 +51,7 @@ public class CollectionController {
         collectionResourceList = collectionResourceAssembler.toResources(collectionList);
         return new ResponseEntity<List<CollectionResource>>(collectionResourceList, HttpStatus.OK);
     }
-   
+    
     @PostMapping
     public HttpEntity<Void> createCollection(@Valid @RequestBody CollectionResource collectionResource) {
     		HttpHeaders headers = null;
@@ -77,7 +77,6 @@ public class CollectionController {
     @PatchMapping(value="/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateCollection(@PathVariable("id") String id, @RequestBody Collection collection) {
-    		System.out.println(ReflectionToStringBuilder.toString(collection, ToStringStyle.MULTI_LINE_STYLE));
     		collection.setId(id);
         this.collectionService.updateCollection(collection);
     }
